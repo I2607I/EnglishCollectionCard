@@ -1,4 +1,6 @@
 import random
+
+
 class Card():
     def __init__(self, name, rarity):
         self.name = name
@@ -8,14 +10,13 @@ class Card():
         return self.name + ' ' + self.rarity
 
 
-
 class Pack():
     def __init__(self):
         self.pack  = []
-        self.count_common = 8
+        self.count_common = 4
         self.count_rare = 1
-        self.chance_super_rare = 1/8
-        self.chance_ultra_rare = 1/64
+        self.chance_super_rare = 1/4
+        self.chance_ultra_rare = 1/16
         self.gen_cards("common", self.count_common)
         self.gen_cards("rare", self.count_rare)
         self.gen_chance_cards("super_rare", self.chance_super_rare)
@@ -32,6 +33,7 @@ class Pack():
             name = line[0]
             self.pack.append(Card(name, type_card))
 
+
     def gen_chance_cards(self, type_card, chance):
         with open(f"cards/{type_card}_cards.txt", "r") as f:
             lines = f.readlines()
@@ -41,9 +43,6 @@ class Pack():
         name = line[0]
         if random.random() < chance:
             self.pack.append(Card(name, type_card))
-            
-           
-
 
         
     def __str__(self):
@@ -51,8 +50,6 @@ class Pack():
 
 pack = Pack()
 print(pack)
-
-print(random.random())
 
             
 
