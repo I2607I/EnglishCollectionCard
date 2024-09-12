@@ -1,0 +1,2 @@
+house дом
+apartment квартира

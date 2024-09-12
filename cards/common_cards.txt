@@ -1,0 +1,12 @@
+tree дерево
+chair стул
+car машина
+air воздух
+animal животное
+answer ответ
+approach подход
+area область
+arm рука
+autumn осень
+bear медведь
+bed кровать
