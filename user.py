@@ -10,15 +10,13 @@ load_dotenv()
 
 code = 2607
 template = f'''<div style="background-color: lightblue; padding: 20px;">
-    <div style="background-color: white; padding: 10px;">
-       Введите проверочный код {code}
-    </div>
-</div>'''
+               <div style="background-color: white; padding: 10px;">
+               Введите проверочный код {code}
+               </div>
+               </div>
+            '''
 asparagus_cid = make_msgid()
-textfile = 'README.md'
 msg = EmailMessage()
-# with open(textfile) as fp:
-#     msg.set_content(fp.read())
 msg.set_content(template.format(asparagus_cid=asparagus_cid), subtype='html')
 msg['Subject'] = f'Проверочный код'
 msg['From'] = os.getenv("me")
