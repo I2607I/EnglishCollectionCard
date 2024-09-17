@@ -1,12 +1,13 @@
 from sqlalchemy import Column, text, DateTime
 from sqlalchemy.dialects.postgresql import INTEGER, TEXT, TIMESTAMP, UUID
 from sqlalchemy.sql import func
+from sqlalchemy.ext.declarative import declarative_base
 
 from english_collection_card.db import DeclarativeBase
 
-
-class User(DeclarativeBase):
-    __tablename__ = "url_storage"
+Base = declarative_base()
+class User(Base):
+    __tablename__ = "user"
 
     id = Column(
         UUID(as_uuid=True),
