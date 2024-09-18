@@ -7,6 +7,10 @@ from sqlalchemy import create_engine
 from english_collection_card.db.models.user import Base
 from sqlalchemy.orm import Session
 
+from user import send_emeil_code, check_email_code, gen_email_code, hash_pass, check_pass
+
+
+
 
 # POSTGRES_DB=shortener_db
 # POSTGRES_USER=user
@@ -27,7 +31,7 @@ def reg(name, password, email=None):
     # print(user)
     new_user = None
     if not user:
-        new_user = User(name=name, password=password, email=email)
+        new_user = User(name=name, password=hash_pass(password), email=email)
         s.add(new_user)
         s.commit()
         s.refresh(new_user)
@@ -35,4 +39,4 @@ def reg(name, password, email=None):
 
 
 # session = get_session()
-reg('26078', 'test', '12345')
+reg('260789', 'test', '12345')
