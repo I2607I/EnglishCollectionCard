@@ -1,5 +1,5 @@
 from sqlalchemy import Column, text, DateTime
-from sqlalchemy.dialects.postgresql import INTEGER, TEXT, TIMESTAMP, UUID
+from sqlalchemy.dialects.postgresql import INTEGER, TEXT, TIMESTAMP, UUID, BYTEA
 from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -7,14 +7,14 @@ from english_collection_card.db import DeclarativeBase
 
 Base = declarative_base()
 class User(Base):
-    __tablename__ = "user"
+    __tablename__ = "useryyi"
 
     id = Column(
         UUID(as_uuid=True),
         primary_key=True,
         server_default=func.gen_random_uuid(),
         unique=True,
-        doc="Unique user id",
+        doc="Unique usetttr id",
     )
     name = Column(
         TEXT,
@@ -23,7 +23,7 @@ class User(Base):
         doc="Unique name",
     )
     password = Column(
-        TEXT,
+        BYTEA,
         nullable=False,
         doc="Password",
     )

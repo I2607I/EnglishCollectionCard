@@ -1,19 +1,14 @@
-import os
-import sys
-
 from logging.config import fileConfig
 
 from alembic import context
 from dotenv import load_dotenv
 from sqlalchemy import engine_from_config, pool
-# BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# APP_DIR = os.path.join(BASE_DIR, '../../../english_collection_card')
-# APP_DIR = '/home/igorliza/2607/Programming/GITHUB/EnglishCollectionCard/english_collection_card'
-# print(APP_DIR)
-# sys.path.append(APP_DIR)
-from english_collection_card.db import DeclarativeBase
+
 from english_collection_card.config.utils import get_settings
+from english_collection_card.db import DeclarativeBase
 from english_collection_card.db.models import *  # noqa
+from english_collection_card.db.models.user import Base
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -36,15 +31,12 @@ fileConfig(config.config_file_name, disable_existing_loggers=False)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = DeclarativeBase.metadata
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-# BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# APP_DIR = os.path.join(BASE_DIR, '../../english_collection_card')
-# sys.path.append(APP_DIR)
 
 
 def run_migrations_offline() -> None:
@@ -95,3 +87,4 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
+
