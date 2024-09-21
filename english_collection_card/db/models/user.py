@@ -7,14 +7,14 @@ from english_collection_card.db import DeclarativeBase
 
 Base = declarative_base()
 class User(Base):
-    __tablename__ = "useryyi"
+    __tablename__ = "user"
 
     id = Column(
         UUID(as_uuid=True),
         primary_key=True,
         server_default=func.gen_random_uuid(),
         unique=True,
-        doc="Unique usetttr id",
+        doc="Unique user id",
     )
     name = Column(
         TEXT,
