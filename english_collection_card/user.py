@@ -46,6 +46,8 @@ def hash_pass(password):
    return password
 
 def check_pass(password, hash_password):
+   print(password, hash_password)
+   print(bcrypt.hashpw(password.encode(), bcrypt.gensalt()))
    valid = bcrypt.checkpw(password.encode(), hash_password)
    return valid
 

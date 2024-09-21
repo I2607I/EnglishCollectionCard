@@ -10,30 +10,27 @@ from user import send_emeil_code, check_email_code, gen_email_code, hash_pass, c
 engine = create_engine("postgresql+psycopg2://user:hackme@localhost/shortener_db")
 Base.metadata.create_all(engine)
 
-s = Session(engine)
+session = Session(engine)
     
 
-def reg(name, password, email=None):
-    user = s.execute(select(User).where(name==User.name)).all()
-    # user = select(User).where(name==User.name)
-    # user = await session.scalar(user)
-    # print(user.__dict__)
+def reg(session, name, password, email=None):
+    user = session.execute(select(User).where(name==User.name)).all()
     print('here')
     new_user = None
     if not user:
         print('here2')
         new_user = User(name=name, password=hash_pass(password), email=email)
-        s.add(new_user)
-        s.commit()
-        s.refresh(new_user)
+        session.add(new_user)
+        session.commit()
+        session.refresh(new_user)
     return new_user
 
-def get_user(name):
-    user = s.execute(select(User).where(name==User.name)).scalars().first()
+def get_user(session, name):
+    user = session.execute(select(User).where(name==User.name)).scalars().first()
     return user
 
 
-# session = get_session()
-print(reg('26077', 'test', '12345'))
-user = get_user('2607')
-print(check_pass('2607', user.password))
+print(reg(session, '2607', 'test', '12345'))
+user = get_user(session, '2607')
+print(user.password)
+print(check_pass('test', user.password))
