@@ -12,10 +12,12 @@ from template_email import gen_template
 
 load_dotenv()
 
-def send_emeil_code(me, you, template):
+def send_emeil_code(me, you, code):
+
    asparagus_cid = make_msgid()
 
    msg = EmailMessage()
+   template = gen_template(code)
    msg.set_content(template.format(asparagus_cid=asparagus_cid), subtype='html')
    msg['Subject'] = f'Проверочный код'
    msg['From'] = me

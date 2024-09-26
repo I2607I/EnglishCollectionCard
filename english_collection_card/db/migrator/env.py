@@ -5,9 +5,8 @@ from dotenv import load_dotenv
 from sqlalchemy import engine_from_config, pool
 
 from english_collection_card.config.utils import get_settings
-from english_collection_card.db import DeclarativeBase
+from english_collection_card.db import Base
 from english_collection_card.db.models import *  # noqa
-from english_collection_card.db.models.user import Base
 
 
 # this is the Alembic Config object, which provides

@@ -1,11 +1,10 @@
 from sqlalchemy import Column, text, DateTime
 from sqlalchemy.dialects.postgresql import INTEGER, TEXT, TIMESTAMP, UUID, BYTEA
 from sqlalchemy.sql import func
-from sqlalchemy.ext.declarative import declarative_base
 
-from english_collection_card.db import DeclarativeBase
+from english_collection_card.db import Base
 
-Base = declarative_base()
+# Base = Base()
 class User(Base):
     __tablename__ = "user"
 
