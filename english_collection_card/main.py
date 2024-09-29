@@ -68,8 +68,9 @@ def get_word(session, russian):
 def create_card(session, word, user_id, rarity):
     # пока юзер id передаём
     word_id = session.execute(select(Word.id).where(word==Word.russian)).scalars().first()
-    card = session.execute(select(Card).where(word_id==word_id, user_id==user_id, rarity==rarity)).scalars().first()
+    card = session.execute(select(Card).where(word_id==Card.word_id, user_id==Card.user_id, rarity==Card.rarity)).scalars().first()
     new_card = None
+    print(card)
     if not card:
         new_card = Card(word_id=word_id, user_id=user_id, rarity=rarity)
         session.add(new_card)
@@ -122,7 +123,14 @@ create_word(session, 'медведь', 'bear')
 create_word(session, 'кровать', 'bed')
 
 print(get_word(session, 'луна'))
+print(get_word(session, 'дерево'))
 
 create_card(session, 'луна', user.id, 'rare')
+create_card(session, 'дерево', user.id, 'superrare')
+create_card(session, 'осень', user.id, 'ultrarare')
+
+
+
+print(get_cards(session, user.id))
 # print(reg(session, name, password, email))
 # print(auth2(session, name, password))
